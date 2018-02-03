@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Book from './Book';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Book from "./Book";
 
 class BookShelf extends Component {
-  
-//  static propTypes = {
-  //  	shelves: 
-    //}
-  
-  
+  //  static propTypes = {
+  //  	shelves:
+  //}
+
   state = {
-  	query: ""
-  }
+    query: ""
+  };
 
   render() {
-	console.log(this.props.books)
+    console.log(this.props.books);
     return (
       <div className="book-shelf">
-    	<h2 className="bookshelf-title">{this.props.shelf.display}</h2>
-       	<div className="bookshelf-books">
-        	<ol className="books-grid">
-              {this.props.books.map((book) => ( 
-                <Book
-                  key={book.id}
-                  title={book.title} 
-                  author={book.author}
-                  thumbnail={book.imageLinks.thumbnail}
-                  />
-              ))}
-			</ol>
-		</div>
-	</div>
-	)
+        <h2 className="bookshelf-title">{this.props.shelf.display}</h2>
+        <div className="bookshelf-books">
+          <ol className="books-grid">
+            {this.props.books.map(book => (
+              <Book
+                key={book.id}
+                title={book.title}
+                author={book.author}
+                thumbnail={book.imageLinks.thumbnail}
+              />
+            ))}
+          </ol>
+        </div>
+      </div>
+    );
   }
 }
-export default BookShelf
+export default BookShelf;
 
 /*
          'url("http://books.google.com/books/contentid=PGR2AwAAQBAJ&printsec=frontcover' +

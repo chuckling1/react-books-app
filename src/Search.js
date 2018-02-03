@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import React from "react";
+import { Link, Route } from "react-router-dom";
 
 class Search extends React.Component {
-
-render () {
-  
-  return (
+  render() {
+    return (
       <div className="search-books">
-       <div className="search-books-bar">
-          <Link className="close-search" to="/">Close</Link>
-            <div className="search-books-input-wrapper">
+        <div className="search-books-bar">
+          <Link className="close-search" to="/">
+            Close
+          </Link>
+          <div className="search-books-input-wrapper">
             {/*
                     NOTES: The search from BooksAPI is limited to a particular set of search terms.
                     You can find these search terms here:
@@ -18,13 +18,14 @@ render () {
                     However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                     you don't find a specific author or title. Every search is limited by search terms.
                   */}
-              <input type="text" placeholder="Search by title or author"/>
+            <input type="text" placeholder="Search by title or author" />
           </div>
+        </div>
+        <div className="search-books-results">
+          <ol className="books-grid" />
+        </div>
       </div>
-      <div className="search-books-results">
-          <ol className="books-grid"></ol>
-      </div>
-      </div>
-	)}
+    );
+  }
 }
-export default Search
+export default Search;
