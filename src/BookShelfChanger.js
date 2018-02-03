@@ -8,8 +8,8 @@ class BookShelfChanger extends Component {
   //, onRemoveShelf: PropTypes.func.isRequired
   //}
 
-  state = {
-    query: ""
+  updateShelf = newShelf => {
+    this.props.updateShelf(newShelf);
   };
 
   render() {
@@ -20,9 +20,14 @@ class BookShelfChanger extends Component {
       { id: "none", text: "None" }
     ];
 
+    const { book } = this.props;
+
     return (
       <div className="book-shelf-changer">
-        <select>
+        <select
+          value={this.props.currentShelf}
+          onChange={e => this.updateShelf(e.target.value)}
+        >
           <option value="none" disabled>
             Move to...
           </option>

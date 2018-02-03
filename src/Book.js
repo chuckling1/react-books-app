@@ -11,9 +11,18 @@ class Book extends Component {
     author: PropTypes.string
   };
 
+  state = {
+    currentShelf: ""
+  };
+
+  updateShelf = newShelf => {
+    this.props.updateShelf(this.props.book, newShelf);
+    this.setState({ currentShelf: newShelf });
+  };
+
   render() {
     const style = {
-      backgroundImage: `url(${this.props.thumbnail})`,
+      backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`,
       width: 128,
       height: 193
     };
@@ -23,10 +32,15 @@ class Book extends Component {
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={style} />
-            <BookShelfChanger />
+            <BookShelfChanger
+              currentShelf={this.props.book.shelf}
+              updateShelf={this.updateShelf}
+            />
           </div>
-          <div className="book-title">{this.props.title}</div>
-          <div className="book-authors">{this.props.author}</div>
+          <div className="book-title">{this.props.book.title}</div>
+          <div className="book-authors">
+            {(this.props.book.authors || ["Unknown"]).join(", ")}
+          </div>
         </div>
       </li>
     );

@@ -12,6 +12,10 @@ class BookList extends Component {
     books: []
   };
 
+  updateShelf = (book, newShelf) => {
+    this.props.onUpdateShelf(book, newShelf);
+  };
+
   render() {
     const shelves = [
       { shelf: "currentlyReading", display: "Currently Reading" },
@@ -29,7 +33,14 @@ class BookList extends Component {
             let books = this.props.books.filter(
               book => book.shelf === shelf.shelf
             );
-            return <BookShelf key={shelf.shelf} shelf={shelf} books={books} />;
+            return (
+              <BookShelf
+                key={shelf.shelf}
+                shelf={shelf}
+                books={books}
+                updateShelf={this.updateShelf}
+              />
+            );
           })}
         </div>
       </div>

@@ -11,20 +11,18 @@ class BookShelf extends Component {
     query: ""
   };
 
+  updateShelf = (book, newShelf) => {
+    this.props.updateShelf(book, newShelf);
+  };
+
   render() {
-    console.log(this.props.books);
     return (
       <div className="book-shelf">
         <h2 className="bookshelf-title">{this.props.shelf.display}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {this.props.books.map(book => (
-              <Book
-                key={book.id}
-                title={book.title}
-                author={book.author}
-                thumbnail={book.imageLinks.thumbnail}
-              />
+              <Book key={book.id} book={book} updateShelf={this.updateShelf} />
             ))}
           </ol>
         </div>
