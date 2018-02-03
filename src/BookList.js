@@ -6,80 +6,33 @@ class BookList extends Component {
 	
     static propTypes = {
       books: PropTypes.arrayOf(Object)
-      //width: PropTypes.number,
-      //height: PropTypes.number,
-      //imgUrl: PropTypes.string,
-      //title: PropTypes.string,
-      //author: PropTypes.string
     }
   
   	state = {
   		shelves: [],
       	books: []
- 	 }
-
-	componentDidMount() {
-    	//this.setState({books: this.props.books})
-      	//const shelves = [
-        //  {"Currently Reading" : []},
-        //  {"Want to Read" : []},
-        //  {"Read" : []}
-    	//]
-		console.log(this.props.books)    
-        //this.setState({shelves: shelves})
-      //this.setState({shelves: sortedShelves})
     }
-	
-	componentWillMount() {
-     	//let sortedShelves = []
-    	//let shelfCategories = []
-        console.log(this.props.books)                                       
-    	//if(this.props.books){
-    	//	this.props.books.map(book => {
-  		//		if(sortedShelves[book.shelf]){
-  		//			sortedShelves[book.shelf].push(book)
-  		//		}else{
-          //     	 	shelfCategories.push(book.shelf)
-            //  		sortedShelves[book.shelf] = [book]
-            //	}
-  			//})
-			//
-			//this.setState( {shelves: sortedShelves})
-			
-	
-      
-  	}
 
-
-	//addShelf = (books) => {
-      //this.setState( {shelves: this.shelves.concat([ books ])})
-    //}
-   
-	
-  render() {
+  render() { 
+    const shelves = [
+      { shelf : "currentlyReading", display : "Currently Reading"},
+      { shelf : "wantToRead", display : "Want to Read"},
+      { shelf : "read", display: "Read" }	
+    ];
     
-    return (
-      <div className="list-book">
-          {
-       		console.log(this.props.books)
-         	//<BookShelf books={books}/>
-            
-          }
+	return (
+      <div className="list-books">
+    	<div className="list-books-title">
+              <h1>MyReads</h1>
+        </div>
+    	<div className="list-books-content">
+          { shelves.map(shelf => {
+                let books = this.props.books.filter(book => book.shelf === shelf.shelf)
+                return <BookShelf key={shelf.shelf} shelf={shelf} books={books} />
+          })}
+		</div>
       </div>
     )
-
-    //return (
-    //
-    //	<div className="book">
-    // 		<div className="book-top">
-    // 			<div className="book-cover" style={style}></div>
-    // 			<BookShelfChanger />
-    // 		</div>
-    // 		<div className="book-title">{this.props.title}</div>
-    // 		<div className="book-authors">{this.props.author}</div>
-    // 	</div>
-	//)
-  
   }
 }
 export default BookList

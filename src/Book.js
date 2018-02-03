@@ -11,29 +11,26 @@ class Book extends Component {
       title: PropTypes.string,
       author: PropTypes.string
     }
-  
-  	state = {
-  		query: ""
- 	 }
 
   render() {
+    
     const style = {
-    	position: 'relative',
-    	backgroundImage : `url(${this.props.imgUrl})`,
-      	backgroundRepeat : 'no-repeat',
-      	backgroundPosition : 'center',
-      	backgroundSize : 'cover'
+    	backgroundImage : `url(${this.props.thumbnail})`,
+		width : 128,
+		height : 193
     }
-
+	
     return (
-    	<div className="book">
-     		<div className="book-top">
-     			<div className="book-cover" style={style}></div>
-     			<BookShelfChanger />
-     		</div>
-     		<div className="book-title">{this.props.title}</div>
-     		<div className="book-authors">{this.props.author}</div>
-     	</div>
+		<li>
+          <div className="book">
+              <div className="book-top">
+                  <div className="book-cover" style={style}></div>
+                  <BookShelfChanger />
+              </div>
+              <div className="book-title">{this.props.title}</div>
+              <div className="book-authors">{this.props.author}</div>
+          </div>
+		</li>
 	)
   }
 }
