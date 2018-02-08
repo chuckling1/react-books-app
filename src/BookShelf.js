@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import Book from "./Book";
 
 class BookShelf extends Component {
-  //  static propTypes = {
-  //  	shelves:
-  //}
-
-  state = {
-    query: ""
+  static propTypes = {
+    shelf: PropTypes.string,
+    books: PropTypes.arrayOf(Object),
+    updateShelf: PropTypes.func
   };
 
   updateShelf = (book, newShelf) => {
@@ -16,13 +14,20 @@ class BookShelf extends Component {
   };
 
   render() {
+    const { shelf } = this.props;
+
     return (
       <div className="book-shelf">
-        <h2 className="bookshelf-title">{this.props.shelf.display}</h2>
+        <h2 className="bookshelf-title">{shelf.display}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {this.props.books.map(book => (
-              <Book key={book.id} book={book} updateShelf={this.updateShelf} />
+              <Book
+                key={book.id}
+                book={book}
+                currentShelf={book.shelf}
+                updateShelf={this.updateShelf}
+              />
             ))}
           </ol>
         </div>

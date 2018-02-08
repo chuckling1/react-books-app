@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-//import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class BookShelfChanger extends Component {
-  //static propTypes = {
-  //shelves: PropTypes.array.isRequired
-  //, onAddShelf: PropTypes.func.isRequired
-  //, onRemoveShelf: PropTypes.func.isRequired
-  //}
+  static propTypes = {
+    currentShelf: PropTypes.string,
+    updateShelf: PropTypes.func
+  };
 
   updateShelf = newShelf => {
     this.props.updateShelf(newShelf);
   };
 
   render() {
+    const { currentShelf } = this.props;
+
     const shelves = [
       { id: "currentlyReading", text: "Currently Reading" },
       { id: "wantToRead", text: "Want to Read" },
@@ -20,15 +21,13 @@ class BookShelfChanger extends Component {
       { id: "none", text: "None" }
     ];
 
-    const { book } = this.props;
-
     return (
       <div className="book-shelf-changer">
         <select
-          value={this.props.currentShelf}
+          value={currentShelf}
           onChange={e => this.updateShelf(e.target.value)}
         >
-          <option value="none" disabled>
+          <option value={this.currentShelf} disabled>
             Move to...
           </option>
           {shelves.map(shelf => (

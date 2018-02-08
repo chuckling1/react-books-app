@@ -4,12 +4,8 @@ import BookShelf from "./BookShelf.js";
 
 class BookList extends Component {
   static propTypes = {
-    books: PropTypes.arrayOf(Object)
-  };
-
-  state = {
-    shelves: [],
-    books: []
+    books: PropTypes.arrayOf(Object),
+    onUpdateShelf: PropTypes.func
   };
 
   updateShelf = (book, newShelf) => {
@@ -17,6 +13,8 @@ class BookList extends Component {
   };
 
   render() {
+    const { books } = this.props;
+
     const shelves = [
       { shelf: "currentlyReading", display: "Currently Reading" },
       { shelf: "wantToRead", display: "Want to Read" },
@@ -30,14 +28,12 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           {shelves.map(shelf => {
-            let books = this.props.books.filter(
-              book => book.shelf === shelf.shelf
-            );
+            let bks = books.filter(book => book.shelf === shelf.shelf);
             return (
               <BookShelf
                 key={shelf.shelf}
                 shelf={shelf}
-                books={books}
+                books={bks}
                 updateShelf={this.updateShelf}
               />
             );

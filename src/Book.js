@@ -4,25 +4,27 @@ import BookShelfChanger from "./BookShelfChanger";
 
 class Book extends Component {
   static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    imgUrl: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.string
+    book: PropTypes.object,
+    updateShelf: PropTypes.func,
+    currentShelf: PropTypes.string
   };
 
   state = {
     currentShelf: ""
   };
 
+  // move this book to a new shelf
   updateShelf = newShelf => {
     this.props.updateShelf(this.props.book, newShelf);
     this.setState({ currentShelf: newShelf });
   };
 
   render() {
+    const { title, authors, imageLinks } = this.props.book;
+    const { currentShelf } = this.props;
+
     const style = {
-      backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`,
+      backgroundImage: `url(${imageLinks.thumbnail})`,
       width: 128,
       height: 193
     };
@@ -33,13 +35,13 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={style} />
             <BookShelfChanger
-              currentShelf={this.props.book.shelf}
+              currentShelf={currentShelf}
               updateShelf={this.updateShelf}
             />
           </div>
-          <div className="book-title">{this.props.book.title}</div>
+          <div className="book-title">{title}</div>
           <div className="book-authors">
-            {(this.props.book.authors || ["Unknown"]).join(", ")}
+            {(authors || ["Unknown"]).join(", ")}
           </div>
         </div>
       </li>

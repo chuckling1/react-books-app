@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
   };
 
   refreshBooks = () => {
-    return BooksAPI.getAll().then(books => {
+    BooksAPI.getAll().then(books => {
       this.setState({ books });
     });
   };
@@ -22,7 +22,14 @@ class BooksApp extends React.Component {
   }
 
   onUpdateShelf = (book, newShelf) => {
-    BooksAPI.update(book, newShelf).then(this.refreshBooks());
+    if (this.state.books) {
+      BooksAPI.update(book, newShelf).then(() => {
+        book.shelf = newShelf;
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([book])
+        }));
+      });
+    }
   };
 
   render() {
