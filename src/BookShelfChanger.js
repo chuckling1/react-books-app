@@ -27,7 +27,7 @@ class BookShelfChanger extends Component {
           value={currentShelf}
           onChange={e => this.updateShelf(e.target.value)}
         >
-          <option value={this.currentShelf} disabled>
+          <option value="" disabled>
             Move to...
           </option>
           {shelves.map(shelf => (

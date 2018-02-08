@@ -28,7 +28,7 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           {shelves.map(shelf => {
-            let bks = books.filter(book => book.shelf === shelf.shelf);
+            const bks = books.filter(book => book.shelf === shelf.shelf);
             return (
               <BookShelf
                 key={shelf.shelf}

@@ -4,7 +4,7 @@ import Book from "./Book";
 
 class BookShelf extends Component {
   static propTypes = {
-    shelf: PropTypes.string,
+    shelf: PropTypes.object,
     books: PropTypes.arrayOf(Object),
     updateShelf: PropTypes.func
   };
