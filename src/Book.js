@@ -24,9 +24,7 @@ class Book extends Component {
     const { currentShelf } = this.props;
 
     const style = {
-      backgroundImage: `url(${imageLinks.thumbnail})`,
-      width: 128,
-      height: 193
+      backgroundImage: `url(${imageLinks.thumbnail})`
     };
 
     return (
