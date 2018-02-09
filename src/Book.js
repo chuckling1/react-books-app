@@ -21,7 +21,7 @@ class Book extends Component {
 
   render() {
     const { title, authors, imageLinks } = this.props.book;
-    const { currentShelf, isSearch } = this.props;
+    const { currentShelf } = this.props;
 
     const style = {
       backgroundImage: `url(${imageLinks ? imageLinks.thumbnail : ""})`
@@ -33,7 +33,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={style} />
             <BookShelfChanger
-              currentShelf={isSearch ? "none" : currentShelf}
+              currentShelf={currentShelf}
               updateShelf={this.updateShelf}
             />
           </div>

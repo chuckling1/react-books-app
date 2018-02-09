@@ -53,7 +53,7 @@ class Search extends React.Component {
               <Book
                 key={book.id}
                 book={book}
-                currentShelf={book.shelf}
+                currentShelf={book.shelf ? book.shelf : "none"}
                 updateShelf={onUpdateShelf}
               />
             ))}
